@@ -1,0 +1,32 @@
+<p>
+    {% if customer %}
+        {{ 'products.price.private' | t }}
+    {% else %}
+        {{ 'products.price.public' | t }}
+    {% endif %}
+    <br>
+    {% if settings.show_prices_with_taxes %}
+        {% assign price = product.price_with_tax %}
+        {% include 'product/price/static' %}
+        {% assign price_name = 'actualPriceWithTax' %}
+        {% include 'product/price/dynamic' %}
+    {% else %}
+        {% assign price = product.price %}
+        {% include 'product/price/static' %}
+        {% assign price_name = 'actualPrice' %}
+        {% include 'product/price/dynamic' %}
+    {% endif %}
+    <!-- TODO: Replace with product unit -->
+    {%if product.id == "69d92849-0b54-4c98-9cec-ea8872ff853d" %}
+    <span class="price-unit">/ one time</span>
+    {%endif%}
+    {%if product.id == "994ded5f-f23c-434c-9a32-71559512fd95" %}
+    <span class="price-unit">/ year per unit</span>
+    {%endif%}
+    {%if product.id == "99ce9e40-f77e-4182-bd9c-df82a594eaa9" %}
+    <span class="price-unit">/ year per unit</span>
+    {%endif%}
+    {%if product.id == "801e0475-116b-48d6-acd2-2bfebb1cca8d" %}
+    <span class="price-unit">/ per month</span>
+    {%endif%}
+</p>
